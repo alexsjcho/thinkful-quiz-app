@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="container">
+
+      <section id="title-text">
       <header>
         <h1>Do You Know Basic Javascript?</h1>
         <p>
@@ -18,8 +19,10 @@
           <strong>knowledge of basic Javascript</strong>
         </p>
       </header>
-      <section id="results">
-        <form name="quizForm" onsubmit="return submitAnswers()">
+    </section>
+
+      <section id="quiz-app">
+        <form name="quizForm" role="perform quiz action">
           <div class="box">
           <h3>1. What is a string in JavaScript？?</h3>
           <input type="radio" name="q1" value="a" id="q1a" />a. a string that
@@ -60,6 +63,9 @@
         </form>
       </section>
     </div>
+
+    <!-- jQuery CDN -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>
