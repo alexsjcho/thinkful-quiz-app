@@ -22,8 +22,8 @@ The following requirements cover what the app must do, from the user's perspecti
 
 Your quiz app must:
 
-1. Render answer choices in a <form>.
-2. Use semantic HTML, along with CSS and jQuery.
+1. Render answer choices in a <form>. [done]
+2. Use semantic HTML, along with CSS and jQuery. Semantic HTML[done]
 3. Follow a11y best practices.
 4. Refer back to the checkpoints on accessibility and forms for help.
 5. Use responsive design.
@@ -44,4 +44,5 @@ As a reminder, your project will be scored based on this rubric. In order to pas
 
 #Reference
 
-Refer to Evan Thompson's RuPaul Quiz https://repl.it/@Vlodnik/Completed-RuPaul-Quiz-App
+Refer to Evan Thompson's RuPaul Quiz
+https://repl.it/@Vlodnik/Completed-RuPaul-Quiz-App

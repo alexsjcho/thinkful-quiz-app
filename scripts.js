@@ -8,3 +8,29 @@
 
 */
 
+//All Questions Object
+
+//All Answers Object
+
+//Question Templates
+
+//Start Button function
+
+//Submit Button function
+
+//Next Button function
+
+//Restart Button Function
+
+//Next Question Render Function
+
+//Check if its the right answer
+
+//Generate correct answer feedback
+
+//Correct answer feedback UI
+
+//Wrong answer feedback html
+
+//Wrong answer feedback UI tempalte
+
