@@ -10,24 +10,18 @@ let correctAnswers = 0;
 const createQuestionSet = [
   {
     number: 1,
-    text: `What is a string in JavaScript？"`,
-    ans1: `(a) a string that
-      you can tie your notes to`,
-    ans2: `(b) a string that
-      you can pluck and create musical sound`,
-    ans3: `(c) JavaScript
-      strings are used for storing and manipulating text`
+    text: `Javascript is going to be an outdated technology, don't learn it`,
+    ans1: `(a) True: Go is the new hype man! `,
+    ans2: `(b) False: Jeff Atwood said "Any application that can be written in JavaScript, will eventually be written in JavaScript"`,
+    ans3: `(c) Javascript is lame of course`
   },
 
   {
     number: 2,
-    text: `What does JavaScript?`,
-    ans1: `(a) an
-    object-oriented computer programming language commonly used to create
-    interactive effects within web browsers`,
-    ans2: `(b) It is an
-    extension of another programming langauge called "Java"`,
-    ans3: `(c) It's a type of
+    text: `JavaScript is the best language for data science?`,
+    ans1: `(a) True: Dude, JavaScript can do anything`,
+    ans2: `(b) False: Yes you can use JavaScript for data science, but Python is better designed for data science`,
+    ans3: `(c) It's the best type of language to talk about
     coffee brewery scripting art using Java beans`
   },
 
@@ -57,11 +51,8 @@ const createQuestionSet = [
 
 //All Answers Object
 const ANSWERS = [
-  `(c) JavaScript
-  strings are used for storing and manipulating text`,
-  `(a) an
-  object-oriented computer programming language commonly used to create
-  interactive effects within web browsers`,
+  `(b) False: Jeff Atwood said "Any application that can be written in JavaScript, will eventually be written in JavaScript"`,
+  `(b) False: Yes you can use JavaScript for data science, but Python is better designed for data science`,
   `(b) False`,
   `(b) False`,
   `(b) False`
@@ -114,7 +105,7 @@ function questionTemplate(correctAnswers, question, questionsAnswered) {
         <button id="js-submit-button">Submit</button>
       </form>
       <div id="status-bar">
-      <span id="question-count">Question: ${question.number}/10</span>
+      <span id="question-count">Question: ${question.number}/5</span>
       <span id="score-count">Score: ${correctAnswers}/${questionsAnswered}</span>
       </div> 
     </section>`;
@@ -125,7 +116,7 @@ function submitButton() {
   $("#start-page").on("click", "#js-submit-button", function(event) {
     event.preventDefault();
     const answer = $("input:checked").siblings("span");
-    const userIsCorrect = checkAnswer(answer);
+    const userIsCorrect = userAnswer(answer);
     if (userIsCorrect) {
       rightFeedback();
     } else {
@@ -183,7 +174,7 @@ function wrongTemplate(questionNum) {
   return `
       <section class="feedback-page" role="main">
         <h2>Sorry, wrong answer! It was ${ANSWERS[questionNum - 1]}!</h2>
-        <img src=https://media.giphy.com/media/hPPx8yk3Bmqys/giphy.gif" alt="Trump Wrong">
+        <img src="https://media.giphy.com/media/l4FGuhL4U2WyjdkaY/giphy.gif" alt="Trump Wrong">
         <button id="js-next-button">Next</button>
       </section>
   `;
@@ -202,11 +193,11 @@ function iterateCorrectAnswers() {
 /* Question Logics & Rendering */
 
 //Results page UI template
-function createResultsPage(correctAnswers) {
+function resultsPage(correctAnswers) {
   $("#start-page").html(`
       <section id="final-page">
         <h2>Final Score: ${correctAnswers} out of 5</h2>
-        <button id="js-restart-button">Play Again?</button>
+        <button id="js-restart-button">Want To Try Again?</button>
       </section>
     `);
 }
