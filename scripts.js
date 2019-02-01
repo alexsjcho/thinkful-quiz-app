@@ -1,8 +1,10 @@
 "use strict";
 
-//Global Variable declarations
+//Global Variable declarations for initial question and initial correct answer points
 let questionNum = 1;
 let correctAnswers = 0;
+
+/* Create arrays of questions and answers */
 
 //All Questions Object
 const createQuestionSet = [
@@ -12,7 +14,7 @@ const createQuestionSet = [
     ans1: `(a) a string that
       you can tie your notes to`,
     ans2: `(b) a string that
-      you can pluck and create musical soun`,
+      you can pluck and create musical sound`,
     ans3: `(c) JavaScript
       strings are used for storing and manipulating text`
   },
@@ -65,6 +67,10 @@ const ANSWERS = [
   `(b) False`
 ];
 
+/* Create arrays of questions and answers */
+
+/* Render the first question set*/
+
 //Start Button function
 function startButton() {
   $("#js-start-button").click(function(event) {
@@ -72,10 +78,18 @@ function startButton() {
   });
 }
 
+//Next Question Render Function
+function nextQuestion() {
+  const question = createQuestionSet[questionNum - 1];
+  const questionsAnswered = questionNum - 1;
+  $("#start-page").html(
+    questionTemplate(correctAnswers, question, questionsAnswered)
+  );
+}
+
 //Question Templates
 function questionTemplate(correctAnswers, question, questionsAnswered) {
-  return;
-  `
+  return `
       <section id="quiz-app" role="main">
     <div class ="question-title">
       <h2 id="question">${question.text}</h2>
@@ -103,29 +117,7 @@ function questionTemplate(correctAnswers, question, questionsAnswered) {
       <span id="question-count">Question: ${question.number}/10</span>
       <span id="score-count">Score: ${correctAnswers}/${questionsAnswered}</span>
       </div> 
-    </section>
-    `;
-}
-
-//Next Question Render Function
-function nextQuestion() {
-  const question = createQuestionSet[questionNum - 1];
-  const questionsAnswered = questionNum - 1;
-  $("#start-page").html(
-    questionTemplate(correctAnswers, question, questionsAnswered)
-  );
-}
-
-//Next Question button function
-function nextButton() {
-  $("#start-page").on("click", "#js-next-button", function(event) {
-    if (questionNum === 5) {
-      resultsPage(correctAnswers);
-    } else {
-      iterateQuestion();
-      nextQuestion();
-    }
-  });
+    </section>`;
 }
 
 //Submit Button function
@@ -142,15 +134,20 @@ function submitButton() {
   });
 }
 
-//Iterate through questions function
-function iterateQuestion() {
-  questionNum++;
+//Next Question button function
+function nextButton() {
+  $("#start-page").on("click", "#js-next-button", function(event) {
+    if (questionNum === 5) {
+      resultsPage(correctAnswers);
+    } else {
+      iterateQuestion();
+      nextQuestion();
+    }
+  });
 }
+/* Render the first question set*/
 
-//Iterate through correct answers
-function iterateCorrectAnswers() {
-  correctAnswers++;
-}
+/* Question Logics & Rendering */
 
 //Check if its the right answer
 function userAnswer(answer) {
@@ -191,6 +188,18 @@ function wrongTemplate(questionNum) {
       </section>
   `;
 }
+
+//Iterate through questions function
+function iterateQuestion() {
+  questionNum++;
+}
+
+//Iterate through correct answers
+function iterateCorrectAnswers() {
+  correctAnswers++;
+}
+
+/* Question Logics & Rendering */
 
 //Results page UI template
 function createResultsPage(correctAnswers) {
