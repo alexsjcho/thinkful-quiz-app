@@ -1,7 +1,11 @@
 "use strict";
 
+//Global Variable declarations
+let questionNum = 1;
+let correctAnswers = 0;
+
 //All Questions Object
-const question = [
+const createQuestionSet = [
   {
     number: 1,
     text: `What is a string in JavaScript？"`,
@@ -61,14 +65,17 @@ const ANSWERS = [
   `(b) False`
 ];
 
-//Global Variable declarations
-let questionNum = 1;
-let correctAnswers = 0;
+//Start Button function
+function startButton() {
+  $("#js-start-button").click(function(event) {
+    nextQuestion();
+  });
+}
 
 //Question Templates
 function questionTemplate(correctAnswers, question, questionsAnswered) {
-  $("#start-page").append($(
-    `
+  return;
+  `
       <section id="quiz-app" role="main">
     <div class ="question-title">
       <h2 id="question">${question.text}</h2>
@@ -97,51 +104,43 @@ function questionTemplate(correctAnswers, question, questionsAnswered) {
       <span id="score-count">Score: ${correctAnswers}/${questionsAnswered}</span>
       </div> 
     </section>
-    `
-  ));
+    `;
 }
 
-//Start Button function
-function startButton() {
-  $("#js-start-button").click(function(event) {
-    nextQuestion();
-  });
+//Next Question Render Function
+function nextQuestion() {
+  const question = createQuestionSet[questionNum - 1];
+  const questionsAnswered = questionNum - 1;
+  $("#start-page").html(
+    questionTemplate(correctAnswers, question, questionsAnswered)
+  );
 }
 
 //Next Question button function
 function nextButton() {
-  $('#start-page').on('click', '#js-next-button', function(event) {
-    if(questionNum === 5) {
+  $("#start-page").on("click", "#js-next-button", function(event) {
+    if (questionNum === 5) {
       resultsPage(correctAnswers);
     } else {
       iterateQuestion();
       nextQuestion();
-  }
+    }
   });
 }
 
 //Submit Button function
 function submitButton() {
-    $('#start-page).on('click', '#js-submit-button', function(event) {
-      event.preventDefault()
-      const answer = $('input:checked').siblings('span');
-      const userIsCorrect = checkAnswer(answer);
-      if(userIsCorrect) {
-        rightFeedback();
-      } else {
-        wrongFeedback();
-      }
-    });
+  $("#start-page").on("click", "#js-submit-button", function(event) {
+    event.preventDefault();
+    const answer = $("input:checked").siblings("span");
+    const userIsCorrect = checkAnswer(answer);
+    if (userIsCorrect) {
+      rightFeedback();
+    } else {
+      wrongFeedback();
+    }
+  });
 }
-
-//Next Question Render Function
-function nextQuestion() {
-    const question = questionSet[questionNum - 1];
-    const questionsAnswered = questionNum - 1;
-    $("#start-page").html(
-      questionTemplate(correctAnswers, question, questionsAnswered)
-    );
-  }
 
 //Iterate through questions function
 function iterateQuestion() {
@@ -155,19 +154,19 @@ function iterateCorrectAnswers() {
 
 //Check if its the right answer
 function userAnswer(answer) {
-    if(answer.text() === ANSWERS[questionNum - 1]) {
-      return true;
-    } else {
-      return false;
-    }
+  if (answer.text() === ANSWERS[questionNum - 1]) {
+    return true;
+  } else {
+    return false;
   }
+}
 
 //Generate correct answer feedback
 function rightFeedback() {
-    $('#start-page').html(correctFeedback);
-    iterateCorrectAnswers();
-  }
-  
+  $("#start-page").html(correctFeedback);
+  iterateCorrectAnswers();
+}
+
 //Correct answer feedback UI template
 const correctFeedback = `
     <section class="feedback-page" role="main">
@@ -179,33 +178,33 @@ const correctFeedback = `
 
 //Wrong answer feedback html
 function wrongFeedback() {
-    $('#container').html(wrongTemplate(questionNum));
-  }
+  $("#start-page").html(wrongTemplate(questionNum));
+}
 
 //Wrong answer feedback UI template
 function wrongTemplate(questionNum) {
-    return `
+  return `
       <section class="feedback-page" role="main">
         <h2>Sorry, wrong answer! It was ${ANSWERS[questionNum - 1]}!</h2>
         <img src=https://media.giphy.com/media/hPPx8yk3Bmqys/giphy.gif" alt="Trump Wrong">
         <button id="js-next-button">Next</button>
       </section>
   `;
-  }
+}
 
 //Results page UI template
 function createResultsPage(correctAnswers) {
-    $('#start-page').html(`
+  $("#start-page").html(`
       <section id="final-page">
         <h2>Final Score: ${correctAnswers} out of 5</h2>
         <button id="js-restart-button">Play Again?</button>
       </section>
     `);
-  }
+}
 
-  //Restart Button Function
+//Restart Button Function
 function restartButton() {
-  $('#start-page').on('click', '#js-restart-button', function(event) {
+  $("#start-page").on("click", "#js-restart-button", function(event) {
     questionNum = 1;
     correctAnswers = 0;
     //Recursion to call nextQuestion method
@@ -215,12 +214,11 @@ function restartButton() {
 
 //Function to handle button clicks (Recursion)
 function handleButtons() {
-    startButton();
-    submitButton();
-    nextButton();
-    restartButton();
-  }
-  
+  startButton();
+  submitButton();
+  nextButton();
+  restartButton();
+}
 
 //Call action button that sets all the other functions
 handleButtons();
