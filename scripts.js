@@ -1,7 +1,7 @@
 "use strict";
 
 //All Questions Object
-const questionSet = [
+const question = [
   {
     number: 1,
     text: `What is a string in JavaScript？"`,
@@ -106,31 +106,31 @@ function startButton() {
   });
 }
 
+//Next Question button function
+function nextButton() {
+  $('#container').on('click', '#js-next-button', function(event) {
+    if(questionNum === 5) {
+      resultsPage(correctAnswers);
+    } else {
+      iterateQuestion();
+      nextQuestion();
+  }
+  });
+}
+
 //Submit Button function
 function submitButton() {
     $('#start-page).on('click', '#js-submit-button', function(event) {
       event.preventDefault()
       const answer = $('input:checked').siblings('span');
-      const userIsCorrect = checkUserAnswer(answer);
+      const userIsCorrect = checkAnswer(answer);
       if(userIsCorrect) {
-        generateCorrectFeedback();
+        rightFeedback();
       } else {
-        generateIncorrectFeedback();
+        wrongFeedback();
       }
     });
-  }
-
-  //Next Question button function
-function nextButton() {
-    $('#container').on('click', '#js-next-button', function(event) {
-      if(questionNum === 10) {
-        resultsPage(correctAnswers);
-      } else {
-        iterateQuestion();
-        nextQuestion();
-    }
-    });
-  }
+}
 
 //Restart Button Function
 function restartButton() {
@@ -151,6 +151,16 @@ function nextQuestion() {
     );
   }
 
+//Iterate through questions function
+function iterateQuestion() {
+  questionNum++;
+}
+
+//Iterate through correct answers
+function iterateCorrectAnswers() {
+  correctAnswers++;
+}
+
 //Check if its the right answer
 function userAnswer(answer) {
     if(answer.text() === ANSWERS[questionNum - 1]) {
@@ -161,7 +171,7 @@ function userAnswer(answer) {
   }
 
 //Generate correct answer feedback
-function generateCorrectFeedback() {
+function rightFeedback() {
     $('#container').html(correctFeedback);
     iterateCorrectAnswers();
   }
@@ -191,15 +201,6 @@ function wrongTemplate(questionNum) {
   `;
   }
 
-//Iterate through questions function
-function iterateQuestion() {
-    questionNum++;
-  }
-
-//Iterate through correct answers
-  function iterateCorrectAnswers() {
-    correctAnswers++;
-  }
 
 //Results page UI template
 function createResultsPage(correctAnswers) {
