@@ -67,7 +67,8 @@ let correctAnswers = 0;
 
 //Question Templates
 function questionTemplate(correctAnswers, question, questionsAnswered) {
-  return `
+  $("#start-page").append($(
+    `
       <section id="quiz-app" role="main">
     <div class ="question-title">
       <h2 id="question">${question.text}</h2>
@@ -96,7 +97,8 @@ function questionTemplate(correctAnswers, question, questionsAnswered) {
       <span id="score-count">Score: ${correctAnswers}/${questionsAnswered}</span>
       </div> 
     </section>
-    `;
+    `
+  ));
 }
 
 //Start Button function
@@ -108,7 +110,7 @@ function startButton() {
 
 //Next Question button function
 function nextButton() {
-  $('#container').on('click', '#js-next-button', function(event) {
+  $('#start-page').on('click', '#js-next-button', function(event) {
     if(questionNum === 5) {
       resultsPage(correctAnswers);
     } else {
@@ -131,16 +133,6 @@ function submitButton() {
       }
     });
 }
-
-//Restart Button Function
-function restartButton() {
-    $('#start-page').on('click', '#js-restart-button', function(event) {
-      questionNum = 1;
-      correctAnswers = 0;
-      //Recursion to call nextQuestion method
-      nextQuestion();
-    });
-  }
 
 //Next Question Render Function
 function nextQuestion() {
@@ -172,7 +164,7 @@ function userAnswer(answer) {
 
 //Generate correct answer feedback
 function rightFeedback() {
-    $('#container').html(correctFeedback);
+    $('#start-page').html(correctFeedback);
     iterateCorrectAnswers();
   }
   
@@ -201,7 +193,6 @@ function wrongTemplate(questionNum) {
   `;
   }
 
-
 //Results page UI template
 function createResultsPage(correctAnswers) {
     $('#start-page').html(`
@@ -212,6 +203,16 @@ function createResultsPage(correctAnswers) {
     `);
   }
 
+  //Restart Button Function
+function restartButton() {
+  $('#start-page').on('click', '#js-restart-button', function(event) {
+    questionNum = 1;
+    correctAnswers = 0;
+    //Recursion to call nextQuestion method
+    nextQuestion();
+  });
+}
+
 //Function to handle button clicks (Recursion)
 function handleButtons() {
     startButton();
@@ -221,5 +222,5 @@ function handleButtons() {
   }
   
 
-//Call actionButton function
+//Call action button that sets all the other functions
 handleButtons();
