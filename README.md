@@ -25,9 +25,9 @@ Your quiz app must:
 1. Render answer choices in a <form>. [done]
 2. Use semantic HTML, along with CSS and jQuery. Semantic HTML[done]
 3. Follow a11y best practices. [done]
-4. Refer back to the checkpoints on accessibility and forms for help.
-5. Use responsive design.
-6. Be fully usable by keyboard (which will be easy enough if you start with a form).
+4. Refer back to the checkpoints on accessibility and forms for help. [done]
+5. Use responsive design. [done]
+6. Be fully usable by keyboard (which will be easy enough if you start with a form). [done]
 
 # Build App Process Framework
 

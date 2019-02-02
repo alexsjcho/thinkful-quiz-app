@@ -82,30 +82,32 @@ function nextQuestion() {
 function questionTemplate(correctAnswers, question, questionsAnswered) {
   return `
       <section id="quiz-app" role="main">
-    <div class ="question-title">
+    <div id ="question-title">
       <h2 id="question">${question.text}</h2>
      </div> 
-      <form>
+      <form id= "js-form">
         <fieldset>
+        <br>
           <label>
             <input class="answer" type="radio" name="option" checked></input>
             <span>${question.ans1}</span>
           </label>
-    
+          <br>
           <label>
             <input class="answer" type="radio" name="option"></input>
             <span>${question.ans2}</span>
           </label>
-    
+          <br>
           <label>
             <input class="answer" type="radio" name="option"></input>
             <span>${question.ans3}</span>
           </label>
+          <br>
         </fieldset>  
-        <button id="js-submit-button">Submit</button>
       </form>
+      <button id="js-submit-button">Submit</button>
       <div id="status-bar">
-      <span id="question-count">Question: ${question.number}/5</span>
+      <span id="question-count">Question: ${question.number}/5</span> <br>
       <span id="score-count">Score: ${correctAnswers}/${questionsAnswered}</span>
       </div> 
     </section>
@@ -159,10 +161,10 @@ function rightFeedback() {
 //Correct answer feedback UI template
 const correctFeedback = `
     <section id="feedback-page" role="main">
-      <h2>Correct! The right answer is: ${ANSWERS[questionNum - 1]}</h2>
+      <h2 >Correct! The right answer is: ${ANSWERS[questionNum - 1]}</h2>
       <img src="https://media.giphy.com/media/3o7absbD7PbTFQa0c8/giphy.gif" alt="Spongebod thumbs up">
-      <button id="js-next-button">Next</button>
     </section>
+    <button id="js-next-button">Next</button>
   `;
 
 //Wrong answer feedback html
@@ -173,11 +175,13 @@ function wrongFeedback() {
 //Wrong answer feedback UI template
 function wrongTemplate(questionNum) {
   return `
-      <section class="feedback-page" role="main">
-        <h2>Sorry, wrong answer! It was ${ANSWERS[questionNum - 1]}!</h2>
+      <section id="feedback-page" role="main">
+        <h2>Sorry, wrong answer! The right answer was ${
+          ANSWERS[questionNum - 1]
+        }!</h2>
         <img src="https://media.giphy.com/media/l4FGuhL4U2WyjdkaY/giphy.gif" alt="Trump Wrong">
-        <button id="js-next-button">Next</button>
       </section>
+      <button id="js-next-button">Next</button>
   `;
 }
 
@@ -198,8 +202,8 @@ function resultsPage(correctAnswers) {
   $("#start-page").html(`
       <section id="final-page">
         <h2>Final Score: ${correctAnswers} out of 5</h2>
-        <button id="js-restart-button">Want To Try Again?</button>
       </section>
+      <button id="js-restart-button">Try Again?</button>
     `);
 }
 
