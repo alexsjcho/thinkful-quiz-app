@@ -18,11 +18,9 @@ body {
 #start-title {
   display: block;
   opacity: 0.75;
-  width: 75%;
-  min-width: 525px;
+  width: 60%;
   height: 25%;
-  margin-top: 5%;
-  margin-left: 10%;
+  margin: auto;
   border-radius: 25px;
   padding: 10px;
   background-color: #242d3d;
@@ -33,31 +31,30 @@ body {
   opacity: 0.75;
   display: block;
   background: url("https://media.giphy.com/media/17BCKTXuusw48/giphy.gif");
-  width: 75%;
-  height: 5%;
-  padding: 2.5px;
+  width: 60%;
+  padding: 10px;
   border-radius: 25px;
-  margin-top: 10%;
-  margin-bottom: 5%;
-  margin-left: 10%;
+  margin: auto;
   font-family: "Ubuntu", sans-serif;
-  font-size: 1.5em;
+  font-size: 2em;
 }
 #start-page {
   text-align: center;
   justify-content: center;
+  margin: auto;
+  padding: 1%;
 }
 
 /* Button Designs */
 #start-page-button {
   display: block;
   text-align: center;
-  margin-top: 10%;
+  margin-top: 5%;
   margin-bottom: 5%;
   margin-left: auto;
   margin-right: auto;
-  width: 15%;
-  font-size: 2.5em;
+  width: 50px;
+  font-size: 2em;
   font-weight: bold;
 }
 

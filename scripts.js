@@ -114,6 +114,13 @@ function questionTemplate(correctAnswers, question, questionsAnswered) {
     `;
 }
 
+function findLongestWordLength(str) {
+  return str.split(" ").sort(function(a, b) {
+    return b.length - a.length;
+  })[0];
+}
+// findLongestWordLength("The quick brown fox jumped over the lazy dog")
+
 //Submit Button function
 function submitButton() {
   $("#start-page").on("click", "#js-submit-button", function(event) {
@@ -161,7 +168,7 @@ function rightFeedback() {
 //Correct answer feedback UI template
 const correctFeedback = `
     <section id="feedback-page" role="main">
-      <h2 >Correct! The right answer is: ${ANSWERS[questionNum - 1]}</h2>
+      <h2 >Correct! The right answer is: ${ANSWERS[questionNum + 1]}</h2>
       <img src="https://media.giphy.com/media/3o7absbD7PbTFQa0c8/giphy.gif" alt="Spongebod thumbs up">
     </section>
     <button id="js-next-button">Next</button>
